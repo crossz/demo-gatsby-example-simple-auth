@@ -9,6 +9,17 @@ The short version is:
 - Logged out users are redirected to the login page if they attempt to visit private routes
 - Logged in users will see their private content
 
+## Upgrading History
+1. upgrade dependencies:
+
+    - [x] package.json to the time of 30 Mar 2022
+    ```
+    yarn upgrade-interactive --latest
+    ```
+    - [x] upgrade the gatsby-node.js(remove OnCreatePage and createPage())
+
+
+
 ## A Note About Security
 
 This example is less about creating an example of secure, production-ready authentication, and more about showing Gatsby's ability to support dynamic content in client-only routes.
