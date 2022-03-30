@@ -18,6 +18,10 @@ The short version is:
     ```
     - [x] upgrade the gatsby-node.js(remove OnCreatePage and createPage())
 
+2.  fix initial router page 404 issue, by switching to Link from Gatsby
+
+    - [x] tried to change the issue page, Login.js into function component. But this did not fix.
+    - [x] replace Link in Status/index.js with `import { Link } from "gatsby"`. As Gatsby knows the generated static files, while @reach/router doesn't.
 
 
 ## A Note About Security

@@ -1,40 +1,71 @@
-import React from "react"
+import React, { useState } from "react"
 import { navigate } from "gatsby"
 import Form from "./Form"
 import View from "./View"
 import { handleLogin, isLoggedIn } from "../utils/auth"
 
-class Login extends React.Component {
-  state = {
-    username: ``,
-    password: ``,
-  }
+// class Login extends React.Component {
+//   state = {
+//     username: ``,
+//     password: ``,
+//   }
 
-  handleUpdate(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    })
-  }
+//   handleUpdate(event) {
+//     this.setState({
+//       [event.target.name]: event.target.value,
+//     })
+//   }
 
-  handleSubmit(event) {
-    event.preventDefault()
-    handleLogin(this.state)
-  }
+//   handleSubmit(event) {
+//     event.preventDefault()
+//     handleLogin(this.state)
+//   }
 
-  render() {
+//   render() {
+//     if (isLoggedIn()) {
+//       navigate(`/app/profile`)
+//     }
+
+//     return (
+//       <View title="Log In">
+//         <Form
+//           handleUpdate={e => this.handleUpdate(e)}
+//           handleSubmit={e => this.handleSubmit(e)}
+//         />
+//       </View>
+//     )
+//   }
+// }
+
+
+// // function component CAN NOT fix the issue about "Gatsby.js development 404 page"
+const Login = () => {
+    const [state, setState] = useState({ 'username': '', 'password': '' })
+
+    const handleUpdate = (event) => {
+        setState({
+            ...state,
+            [event.target.name]: event.target.value,
+        })
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        handleLogin(state)
+    }
+
     if (isLoggedIn()) {
-      navigate(`/app/profile`)
+        navigate(`/app/profile`)
     }
 
     return (
-      <View title="Log In">
-        <Form
-          handleUpdate={e => this.handleUpdate(e)}
-          handleSubmit={e => this.handleSubmit(e)}
-        />
-      </View>
+        <View title="Log In">
+            <Form
+                handleUpdate={e => handleUpdate(e)}
+                handleSubmit={e => handleSubmit(e)}
+            />
+        </View>
     )
-  }
 }
 
 export default Login
